@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generate Service Description"
+  short_description: "Draft repo-level service_description.md"
+  default_prompt: "Use $generate-service-description to inspect this repository and write or refresh a concise service_description.md based on the code, runtime behavior, integrations, and API surface."
