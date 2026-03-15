@@ -7,43 +7,57 @@ description: Generate or refresh a concise repo-level `service_description.md` b
 
 ## Overview
 
-Generate a short, high-signal `service_description.md` for an application or service repository.
+Generate or refresh a short, high-signal `service_description.md` for an application or service repository.
 Base the document on local evidence from the repo rather than assumptions, and optimize for discovery, impact analysis, and fast triage.
+When a repo already has `service_description.md`, treat it as a maintained document: remove stale claims, update changed behavior, and preserve accurate content that still matches the code.
 
 ## Workflow
 
-1. Establish the service shape from obvious entry points.
+1. Inspect any existing `service_description.md` first.
+- Read the current file before sampling the codebase.
+- Treat it as the baseline document to reconcile against current code and config, not as ground truth.
+- For each existing section or claim, decide whether it should be kept, updated, shortened, or removed.
+- Preserve useful structure and wording when it is still accurate; do not rewrite unchanged content just to rephrase it.
+
+2. Establish the service shape from obvious entry points.
 - Read `README*`, `build.gradle*`, `settings.gradle*`, `pom.xml`, `Dockerfile*`, `application*.yml`, `application*.yaml`, and deployment/config files that reveal runtime, framework, ports, auth, topics, or external clients.
 - Identify the language/framework, service name, base path, and whether the repo is API-only, worker-only, or mixed.
 
-2. Map the public surface area.
+3. Map the public surface area.
 - Inspect controllers, routers, GraphQL schemas, consumers, schedulers, and CLIs.
 - Capture only the route families, event consumers/producers, job names, or command entry points that materially define what the service does.
 - Prefer grouped summaries over exhaustive endpoint dumps.
 
-3. Identify core ownership and data flow.
+4. Identify core ownership and data flow.
 - Determine the main entities, workflows, and storage systems the service owns.
 - Trace the high-level request or event flow from ingress to persistence to downstream publication.
 - Call out the behavior that explains why the repo exists, not low-level implementation details.
 
-4. Capture integrations and coupling.
+5. Capture integrations and coupling.
 - List significant downstream/upstream systems and why they are called.
 - Include queues, topics, databases, search indexes, auth providers, and major internal dependencies when they shape change impact.
 - Note likely cross-repo impact only when there is concrete evidence.
 
-5. Draft `service_description.md`.
+6. Draft or refresh `service_description.md`.
 - Write for future discovery agents and developers, not end users.
 - Keep the document concise, behavior-focused, and easy to scan.
 - Use the section rubric in [references/service-description-rubric.md](./references/service-description-rubric.md).
+- If an existing file is present, update it in place when possible:
+  - remove stale facts that no longer match the repo,
+  - replace claims that have changed with current behavior,
+  - keep accurate sections intact unless a rewrite materially improves clarity.
+- If a section mixes accurate and stale content, surgically edit only the stale parts when that keeps the document coherent.
 
-6. Verify against the repo.
+7. Verify against the repo.
 - Re-read the most important code/config sources and remove anything that is speculative.
-- If an existing `service_description.md` is present, preserve useful sections but rewrite stale or vague content.
+- Ensure no removed feature, endpoint family, job, or integration remains in the final file.
+- If the document includes a verification date or freshness marker, update it to reflect the current review.
 - Prefer omission over uncertain claims.
 
 ## Heuristics
 
 - Prefer evidence from code and config over naming guesses.
+- When updating an existing file, make the smallest set of edits that brings it back in sync with the code.
 - Prefer route families, jobs, and integrations over file-by-file implementation notes.
 - Keep the purpose statement understandable in one paragraph.
 - Keep ownership boundaries explicit: what this service owns, and what it delegates.
@@ -53,6 +67,7 @@ Base the document on local evidence from the repo rather than assumptions, and o
 ## Fast Source Checklist
 
 - Existing `service_description.md` files in sibling repos for style calibration
+- Existing repo-local `service_description.md` for claims to verify, preserve, or remove
 - `README*`
 - `build.gradle*`, `pom.xml`, `settings.gradle*`
 - `src/main/resources/application*.yml`
@@ -65,6 +80,9 @@ Base the document on local evidence from the repo rather than assumptions, and o
 ## Output Rules
 
 - Write or update exactly one repo-local `service_description.md` unless the user asks for more.
+- If `service_description.md` already exists, reconcile it with the current repo instead of discarding the whole file by default.
+- Remove stale claims that are no longer supported by the code or config.
+- Preserve accurate sections, headings, and wording when they still reflect the repo.
 - Keep the document short enough to read in a few minutes.
 - Favor headings and grouped bullets over dense prose.
 - Include a maintenance section that says when the document should be updated.

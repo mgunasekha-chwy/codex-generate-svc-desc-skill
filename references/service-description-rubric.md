@@ -2,6 +2,8 @@
 
 Use this rubric to draft or refresh a repository's `service_description.md`.
 
+When the file already exists, treat the current document as a baseline to reconcile with the latest code state rather than starting from a blank page.
+
 ## Target Outcome
 
 Produce a concise explainer that helps a future agent or developer answer:
@@ -80,7 +82,13 @@ Last verified: YYYY-MM-DD
 
 ## Editing Existing Files
 
+- Read the existing file before inspecting the repo in detail.
+- Evaluate each section and claim as `keep`, `update`, or `remove` based on current code and config.
 - Preserve accurate sections that already help routing or triage.
+- Keep existing headings, ordering, and phrasing when they are still accurate and useful.
 - Replace generic statements like "handles business logic" with concrete responsibilities.
 - Refresh stale dates, dependency names, endpoint families, and migration notes.
+- Delete statements about removed endpoints, integrations, jobs, or ownership that no longer exist.
+- If only part of a section is stale, edit that portion instead of rewriting the whole section unless clarity would suffer.
+- Update the freshness marker when the document has been revalidated.
 - Keep the file shorter than the amount of code it points to; it is an index, not a substitute for reading the source.
