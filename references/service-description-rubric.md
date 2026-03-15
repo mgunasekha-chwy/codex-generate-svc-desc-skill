@@ -60,7 +60,7 @@ Last verified: YYYY-MM-DD
 - Prefer behavior and ownership over implementation trivia.
 - Include auth, topics, caches, indexes, jobs, or feature flags only if they affect change planning.
 - Include exact endpoint paths when they are part of the public contract.
-- Include a `Last verified` date when the repo already uses one or when you are freshly verifying the content.
+- Always include a `Last verified: YYYY-MM-DD` line directly below the title.
 
 ## Exclusion Rules
 
@@ -90,5 +90,5 @@ Last verified: YYYY-MM-DD
 - Refresh stale dates, dependency names, endpoint families, and migration notes.
 - Delete statements about removed endpoints, integrations, jobs, or ownership that no longer exist.
 - If only part of a section is stale, edit that portion instead of rewriting the whole section unless clarity would suffer.
-- Update the freshness marker when the document has been revalidated.
+- Ensure the file has exactly one `Last verified: YYYY-MM-DD` line near the top and update it to the current review date whenever the document is revalidated.
 - Keep the file shorter than the amount of code it points to; it is an index, not a substitute for reading the source.

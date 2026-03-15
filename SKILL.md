@@ -42,6 +42,7 @@ When a repo already has `service_description.md`, treat it as a maintained docum
 - Write for future discovery agents and developers, not end users.
 - Keep the document concise, behavior-focused, and easy to scan.
 - Use the section rubric in [references/service-description-rubric.md](./references/service-description-rubric.md).
+- Always include `Last verified: YYYY-MM-DD` directly below the document title.
 - If an existing file is present, update it in place when possible:
   - remove stale facts that no longer match the repo,
   - replace claims that have changed with current behavior,
@@ -51,7 +52,7 @@ When a repo already has `service_description.md`, treat it as a maintained docum
 7. Verify against the repo.
 - Re-read the most important code/config sources and remove anything that is speculative.
 - Ensure no removed feature, endpoint family, job, or integration remains in the final file.
-- If the document includes a verification date or freshness marker, update it to reflect the current review.
+- Set `Last verified: YYYY-MM-DD` to the current review date every time the file is created or refreshed.
 - Prefer omission over uncertain claims.
 
 ## Heuristics
@@ -83,6 +84,8 @@ When a repo already has `service_description.md`, treat it as a maintained docum
 - If `service_description.md` already exists, reconcile it with the current repo instead of discarding the whole file by default.
 - Remove stale claims that are no longer supported by the code or config.
 - Preserve accurate sections, headings, and wording when they still reflect the repo.
+- Always include a `Last verified: YYYY-MM-DD` line directly below the title.
+- When refreshing an existing file, replace any prior verification date with the current review date instead of leaving it stale.
 - Keep the document short enough to read in a few minutes.
 - Favor headings and grouped bullets over dense prose.
 - Include a maintenance section that says when the document should be updated.

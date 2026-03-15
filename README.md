@@ -30,7 +30,7 @@ The machine running this skill needs:
 
 ## What It Does
 
-Given a repository, the skill inspects the code and runtime configuration, identifies the main API or job surface area and integrations, and writes or refreshes a concise repo-local `service_description.md`. When the file already exists, the skill updates it in place by removing stale information, replacing changed behavior with current facts from the code, and preserving still-accurate sections.
+Given a repository, the skill inspects the code and runtime configuration, identifies the main API or job surface area and integrations, and writes or refreshes a concise repo-local `service_description.md`. When the file already exists, the skill updates it in place by removing stale information, replacing changed behavior with current facts from the code, preserving still-accurate sections, and updating `Last verified: YYYY-MM-DD` to the current review date.
 
 ## When To Use It
 
